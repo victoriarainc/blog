@@ -11,12 +11,15 @@
 
 header {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   padding: 3% 0;
+  background-color: #af8286;
+  color: white;
 }
 
 h1 {
   font-family: 'Homemade Apple', cursive;
+  text-align: center;
 }
 
 section {
@@ -25,13 +28,21 @@ section {
 }
 
 .post {
-  background-color: pink;
+  background-color: #ffdde0;
   width: 300px;
-  padding: 2% 6%;
+  padding: 2% 0;
   margin-bottom: 2em;
 }
 
 .link {
   width: 100px;
-text-align: center;
+  text-align: center;
+}
+
+.link a {
+  color: white;
+}
+
+a {
+  color: #af8286;
 }

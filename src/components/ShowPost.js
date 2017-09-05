@@ -4,7 +4,8 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-      Welcome to Victoria's Blogging App!
+      Dynamically generates the individual post
+      that has been clicked on.
       </div>
     );
   }

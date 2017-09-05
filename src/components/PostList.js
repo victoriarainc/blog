@@ -29,16 +29,17 @@ fetchData = (e) => {
 
   render() {
     let items = this.state.blogs.map((post) => {
-     if (post) {
        return(
-         <p>This is a blog post.</p>
+         <div className="post">
+           <p> Author: {items.author} </p>
+           <p> Title: {items.title}</p>
+         </div>
        );
-     }
    });
     return (
       <div className="App">
       <h1> Today's News </h1>
-      <div> {items} </div>
+      {items}
       </div>
     );
   }

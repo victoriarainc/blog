@@ -4,48 +4,49 @@ export default class CreatePost extends Component {
   constructor(props) {
     super (props);
 
-    this.handleAuthor = this.handleAuthor.bind(this);
-    this.handleTitle = this.handleTitle.bind(this);
-    this.handlePost = this.handlePost.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-
     this.state = {
       author: '',
       title: '',
       post: '',
     }
+
+    this.handleAuthor = this.handleAuthor.bind(this);
+    this.handleTitle = this.handleTitle.bind(this);
+    this.handlePost = this.handlePost.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
-  handleAuthor(event) {
+  handleAuthor(e) {
     this.setState({
-      author: event.target.value
+      author: e.target.value
     });
   }
 
-  handleTitle(event) {
+  handleTitle(e) {
     this.setState({
-      title: event.target.value
+      title: e.target.value
     });
   };
 
-  handlePost(event) {
+  handlePost(e) {
     this.setState({
-      post: event.target.value
+      post: e.target.value
     });
   };
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit = (e) => {
+    e.preventDefault();
     this.setState({
-      author: this.state.author,
-      title: this.state.title,
-      post: this.state.post,
-    })
+      author: e.target.value,
+      title: e.target.value,
+      post: e.target.value,
+    });
 
     let listItem = JSON.stringify(this.state);
     console.log(listItem);
 
-    fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
+    fetch("https://tiny-lasagna-server.herokuapp.com/collections/blogger", {
       method: "POST",
       body: listItem,
       headers: {
@@ -66,6 +67,18 @@ export default class CreatePost extends Component {
       post: '',
     })
   }
+
+  componentDidMount() {
+       fetch("https://tiny-lasagna-server.herokuapp.com/collections/blogger/")
+       .then(results => {
+       return results.json();
+       })
+       .then(data => {
+         this.setState({blogs: data});
+         console.log("state", this.state.blogs);
+       })
+     }
+
   render() {
     return (
       <div>
@@ -74,7 +87,7 @@ export default class CreatePost extends Component {
       <input value={this.state.author} onChange={this.handleAuthor} name="author" type="text" placeholder="Author"/>
       <input value={this.state.title} onChange={this.handleTitle} name="title" type="text" placeholder="Title"/>
       <input value={this.state.post} onChange={this.handlePost} name="post" type="textarea" placeholder="Post"/>
-      <button type="submit">+</button>
+      <button onClick={this.handleSubmit} type="submit">+</button>
       </form>
       </div>
     );

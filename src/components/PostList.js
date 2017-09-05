@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-export default class App extends Component {
+export default class PostList extends Component {
   constructor(props) {
     super(props);
 
@@ -18,27 +19,22 @@ export default class App extends Component {
   })
 }
 
-fetchData = (e) => {
-  e.preventDefault();
-  fetch('https://tiny-lasagna-server.herokuapp.com/collections/blogger').then(results => {
-    return results.json();
-  }).then(data => {
-    this.setState({blogs: data});
-  })
-}
-
   render() {
     let items = this.state.blogs.map((post) => {
+      if (post.author) {
        return(
+         <Link to={`/ShowPost/${post._id}`} key={post._id}>
          <div className="post">
-           <p> Author: {items.author} </p>
-           <p> Title: {items.title}</p>
+           <p>Author: {post.author}</p>
+           <p>Title: {post.title}</p>
          </div>
+         </Link>
        );
+     }
    });
     return (
       <div className="App">
-      <h1> Today's News </h1>
+      <h1>Today's News</h1>
       {items}
       </div>
     );

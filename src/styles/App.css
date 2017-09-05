@@ -23,3 +23,15 @@ section {
   display: flex;
   justify-content: center;
 }
+
+.post {
+  background-color: pink;
+  width: 300px;
+  padding: 2% 6%;
+  margin-bottom: 2em;
+}
+
+.link {
+  width: 100px;
+text-align: center;
+}

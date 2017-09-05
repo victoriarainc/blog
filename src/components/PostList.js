@@ -10,16 +10,17 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-  fetch('https://tiny-lasagna-server.herokuapp.com/collections/playlisting').then(results => {
+  fetch('https://tiny-lasagna-server.herokuapp.com/collections/blogger').then(results => {
     return results.json();
   }).then(data => {
     this.setState({blogs: data});
+    console.log("state", this.state.blogs)
   })
 }
 
 fetchData = (e) => {
   e.preventDefault();
-  fetch('https://tiny-lasagna-server.herokuapp.com/collections/playlisting').then(results => {
+  fetch('https://tiny-lasagna-server.herokuapp.com/collections/blogger').then(results => {
     return results.json();
   }).then(data => {
     this.setState({blogs: data});
@@ -37,7 +38,7 @@ fetchData = (e) => {
     return (
       <div className="App">
       <h1> Today's News </h1>
-      {items}
+      <div> {items} </div>
       </div>
     );
   }
